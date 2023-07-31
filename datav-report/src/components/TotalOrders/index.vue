@@ -3,8 +3,11 @@
       title="累计订单量"
       value="2,157,420"
     >
-      <template>
+      <!-- <template>
         <div id="total-orders-chart" :style="{width: '100%', height: '100%'}"></div>
+      </template> -->
+      <template>
+        <v-chart :options="getOptions()" />
       </template>
       <template v-slot:footer>
         <span>昨日订单量 </span>
@@ -19,10 +22,9 @@ import commonCardMixin from '../../mixins/commonCardMixin'
 
 export default {
     mixins: [commonCardMixin],
-    mounted() {
-        const chartDom = document.getElementById('total-orders-chart')
-        const chart = this.$echarts.init(chartDom)
-        chart.setOption({
+    methods: {
+        getOptions() {
+          return {
             xAxis: {
                 type: 'category',
                 show: false,
@@ -51,7 +53,8 @@ export default {
                 left: 0,
                 right: 0
             }
-        })
+          }       
+        }
     }
 }
 </script>

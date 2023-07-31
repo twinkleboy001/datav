@@ -3,8 +3,11 @@
       title="累计用户数"
       value="1,087,503"
     >
-      <template>
+      <!-- <template>
         <div id="total-users-chart" :style="{width: '100%', height: '100%'}"></div>
+      </template> -->
+      <template>
+        <v-chart :options="getOptions()"/>
       </template>
       <template v-slot:footer>
         <div class="total-users-footer">
@@ -25,10 +28,9 @@ import commonCardMixin from '../../mixins/commonCardMixin'
 
 export default {
     mixins: [commonCardMixin],
-    mounted() {
-        const chartDom = document.getElementById('total-users-chart')
-        const chart = this.$echarts.init(chartDom)
-        chart.setOption({
+    methods: {
+      getOptions() {
+        return {
             grid: {
                 top: 0,
                 right: 0,
@@ -95,11 +97,12 @@ export default {
                       style: {
                         fill: '#45c946'
                       }
-                    }]
+                  }]
+                }
               }
-            }
             }]
-        })
+        }
+      }
     }
 }
 </script>

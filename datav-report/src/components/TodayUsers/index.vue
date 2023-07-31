@@ -3,8 +3,11 @@
       title="今日交易用户数"
       value="81,014"
     >
-      <template>
+      <!-- <template>
         <div id="today-users-chart" :style="{width: '100%', height: '100%'}"></div>
+      </template> -->
+      <template>
+        <v-chart :options="getOptions()" />
       </template>
       <template v-slot:footer>
         <span>退货率 </span>
@@ -18,10 +21,9 @@ import commonCardMixin from '../../mixins/commonCardMixin'
 
 export default {
     mixins: [commonCardMixin],
-    mounted() {
-        const chartDom = document.getElementById('today-users-chart')
-        const chart = this.$echarts.init(chartDom)
-        chart.setOption({
+    methods: {
+      getOptions() {
+        return {
             color: ['#3398DB'],
             tooltip: {},
             series: [{
@@ -43,7 +45,8 @@ export default {
                 bottom: 0,
                 right: 0
             }
-        })
+        }
+      }
     }
 }
 </script>
