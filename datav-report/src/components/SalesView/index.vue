@@ -34,7 +34,18 @@
              </div>
            </template>
            <template>
-             <div>222</div>
+             <div class="sales-view-chart-wrapper">
+               <v-chart :options="chartOptions" />
+               <div class="sales-view-list">
+                <div class="sales-view-title">排行榜</div>
+                <div class="list-item" v-for="item in rankData" :key="item.no">
+                   <!-- <div class="list-item-no" :class="+item.no <=3 ? 'top-no' : ''">{{item.no}}</div> -->
+                  <div :class="['list-item-no', +item.no <= 3 ? 'top-no' : '']">{{item.no}}</div>
+                  <div class="list-item-name">{{item.name}}</div>
+                  <div class="list-item-money">{{item.money}}</div>
+                 </div>
+               </div>
+             </div>
            </template>
         </el-card>
     </div>
@@ -78,7 +89,45 @@ export default {
                 }
                 
             ]
-          }
+          },
+          chartOption: {},
+          rankData: [
+            {
+              no: 1,
+              name: '麦当劳',
+              money: '323,234'
+            },
+            {
+              no: 2,
+              name: '麦当劳',
+              money: '323,234'
+            },
+            {
+              no: 3,
+              name: '麦当劳',
+              money: '323,234'
+            },
+            {
+              no: 4,
+              name: '麦当劳',
+              money: '323,234'
+            },
+            {
+              no: 5,
+              name: '麦当劳',
+              money: '323,234'
+            },
+            {
+              no: 6,
+              name: '麦当劳',
+              money: '323,234'
+            },
+            {
+              no: 7,
+              name: '麦当劳',
+              money: '323,234'
+            }
+          ]
         }
     },
     methods: {
@@ -116,6 +165,24 @@ export default {
                 margin-left: 20px;
             }
         }
+    }
+
+    .sales-view-chart-wrapper{
+      display: flex;
+      height: 270px;
+
+      .echarts{
+        flex: 0 0 70%;
+        width: 70%;
+        height: 100%;
+      }
+      .sales-view-list{
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .sales-view-title{}
+      }
     }
 }
 </style>
